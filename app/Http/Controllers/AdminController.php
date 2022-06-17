@@ -9,12 +9,9 @@ use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
-    //
-
     public function index(){
 
         return view('panel.admin-index');
-
     }
 
     public function posts(){
@@ -22,13 +19,10 @@ class AdminController extends Controller
         $posts = Post::all();
 
         return view('panel.admin-posts', compact('posts'));
-
     }
 
     public function create(){
-
         return view('panel.admin-create');
-
     }
 
     public function store(){
@@ -49,7 +43,6 @@ class AdminController extends Controller
         Session::flash('cmessage', 'Post was created!');
 
         return back();
-
     }
 
     public function destroy($post){
@@ -66,7 +59,6 @@ class AdminController extends Controller
         $value = Post::findBySlug($post);
 
         return view('panel.admin-edit', ['post'=> $post, 'value'=>$value]);
-
     }
 
     public function update(Post $post){
@@ -77,7 +69,6 @@ class AdminController extends Controller
             'picture'=>'file',
             'content'=>'required',
             'short_description'=>'required'
-
         ]);
 
 
@@ -96,6 +87,4 @@ class AdminController extends Controller
 
         return redirect()->route('a-posts');
     }
-
-
 }
