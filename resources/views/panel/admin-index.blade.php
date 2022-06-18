@@ -4,6 +4,6 @@
     @endsection
 
     @section('content')
-        <h1>oh maj gad nema ovde nista da se vidi jos, work in progresss :/ </h1>
+        <h1><--- Pocetna trenutno ne sluzi nicemu</h1>
     @endsection
 </x-admin-master>

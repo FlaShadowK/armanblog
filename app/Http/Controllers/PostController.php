@@ -15,14 +15,11 @@ class PostController extends Controller
     public function index()
     {
 
-        //Morao sam da prepakujem arraj iz Posts::all u drugi jer mi je davao neki eloquent error (Slika 1)
+        //Morao sam da prepakujem array iz Posts::all u drugi jer mi je davao neki eloquent error (Slika 1)
 
         $i = 0;
 
         $posts1 = Post::all();
-
-//        return dd($posts1);
-
 
         foreach ($posts1 as $post1) {
             $posts2[$i++] = $post1;
@@ -31,7 +28,6 @@ class PostController extends Controller
         $posts = array_reverse($posts2);
 
         return view('index', ['posts' => $posts]);
-
     }
 
     public function about(){
@@ -41,7 +37,6 @@ class PostController extends Controller
         $user = User::findOrFail(1);
 
         return view('about', ['user'=>$user]);
-
     }
 
     public function contact(){
@@ -49,7 +44,6 @@ class PostController extends Controller
         $content = request();
 
         return view('contact');
-
     }
 
     public function contactMessage(){
@@ -72,13 +66,11 @@ class PostController extends Controller
         Session::flash('mail-message', 'Vasa poruka je poslata.');
 
         return back();
-
     }
 
     public function post(){
 
         return view('post');
-
     }
 
     public function blogs(){
@@ -90,7 +82,6 @@ class PostController extends Controller
         }
 
         return view('blogs', ['posts'=>$posts]);
-
     }
 
     public function blog($slug){
@@ -98,7 +89,6 @@ class PostController extends Controller
         $blog = Post::findBySlugOrFail($slug);
 
         return view('post', ['post'=>$blog]);
-
     }
 
 

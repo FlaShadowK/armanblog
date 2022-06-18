@@ -15,7 +15,7 @@
                 <th style="color: white"><h5><strong>Picture</strong></h5></th>
                 <th style="color: white"><h5><strong>Short Description</strong></h5></th>
                 <th style="color: white"><h5><strong>Content</strong></h5></th>
-                <th style="color: white"><h5><strong>Posted At</strong></h5></th>
+                <th style="color: white"><h5><strong><Other></Other></strong></h5></th>
                 <th style="color: white"><h5><strong>Action</strong></h5></th>
             </tr>
             @foreach($posts as $post)
@@ -24,7 +24,13 @@
                 <td><img src="{{asset($post->picture)}}" style="max-width: 350px ;"></td>
                 <td>{{$post->short_description}}</td>
                 <td><div style="overflow: scroll; width: 100%; max-height: 200px; margin: 0; padding: 0;">{!! $post->content !!}</div></td>
-                <td>{{$post->created_at}}</td>
+                <td>
+                    {{$post->created_at}}
+                    <hr>
+                    {{$post->updated_at}}
+                    <hr>
+                    {{$post->updated_at}}
+                </td>
                 <td><a href="{{route('a-edit', $post->id)}}"><button style="width: 100%;" class="btn btn-info" type="button">Edit</button></a>
                     <hr>
                     <form method="post" action="{{route('a-destroy', $post->id)}}">`
