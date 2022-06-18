@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -61,36 +62,6 @@ class AdminController extends Controller
         return view('panel.admin-edit', ['id' => $id, 'value' => $value]);
     }
 
-//    public function update($post){
-////      return dd($post);
-//        $inputs = request()->validate([
-//
-//            'title'=>'required|max:255',
-//            'content'=>'required',
-//            'short_description'=>'required'
-//        ]);
-//
-//        $posts = new Post;
-//
-//        if(request('post_image')){
-//            $inputs['picture'] = request('picture')->store('/public/images');
-//            $posts->picture = $inputs['picture'];
-//        }
-//
-////        return dd($post->picture);
-//
-//        $posts->title = $inputs['title'];
-//        $posts->content = $inputs['content'];
-//        $posts->short_description = $inputs['short_description'];
-//
-////        dd($posts);
-//        auth()->user()->posts()->whereId($post)->save($posts);
-//
-//        Session::flash('umessage', 'Post was updated!');
-//
-//        return redirect()->route('a-posts');
-//    }
-
     public function update($id){
 
         $inputs = request()->validate([
@@ -105,7 +76,6 @@ class AdminController extends Controller
             $inputs['picture'] = request('picture')->store('/public/images');
         }
 
-//        auth()->user()->posts()->whereId($id)->save($inputs);
         Post::all()->find($id)->update($inputs);
 
         Session::flash('cmessage', 'Post was created!');
@@ -113,4 +83,33 @@ class AdminController extends Controller
         return redirect()->route('a-posts');
     }
 
+    public function aboutEdit(){
+
+        $about = Auth::user()->find(1)->about;
+        $picture = Auth::user()->find(1)->picture;
+
+        return view('panel.admin-edit-about', compact('about', 'picture'));
+
+    }
+
+    public function aboutUpdate(){
+
+        $inputs = request()->validate([
+            'about'=>'required',
+//            'picture'=>'file'
+        ]);
+
+        if(request('picture')){
+            unlink(Auth::user()->picture);
+            $inputs['picture'] = request('picture')->store('/public/about');
+        }
+
+        Auth::user()->about = $inputs['about'];
+        if (!empty($inputs['picture'])){
+        Auth::user()->picture = $inputs['picture'];
+        }
+        Auth::user()->update();
+
+        return redirect()->route('about');
+    }
 }

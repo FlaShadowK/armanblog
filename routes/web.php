@@ -41,4 +41,6 @@ Route::middleware(['auth','admin-check'])->group(function (){
     Route::get('/panel/edit/{id}', [\App\Http\Controllers\AdminController::class, 'edit'])->name('a-edit');
     Route::patch('/panel/update/{id}', [\App\Http\Controllers\AdminController::class, 'update'])->name('a-update');
     Route::get('/panel/posts', [\App\Http\Controllers\AdminController::class, 'posts'])->name('a-posts');
+    Route::get('/panel/about', [\App\Http\Controllers\AdminController::class, 'aboutEdit'])->name('a-edit-about');
+    Route::patch('/panel/about/update', [\App\Http\Controllers\AdminController::class, 'aboutUpdate'])->name('a-update-about');
 });

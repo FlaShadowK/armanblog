@@ -20,9 +20,10 @@
     </a>
 </li>
 <li class="nav-item">
-    <a href="#" class="nav-link">
+    <a href="{{route('a-edit-about')}}" class="nav-link">
         <p>
             Izmjenite "o meni" sadrzaj
         </p>
     </a>
 </li>
+
