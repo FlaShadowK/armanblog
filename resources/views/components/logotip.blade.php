@@ -1,1 +1,1 @@
-<a class="navbar-brand" href="{{route('index')}}">Arman Omerovic</a>
+<a class="navbar-brand" href="{{route('index')}}">Start Bootstrap</a>

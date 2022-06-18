@@ -8,22 +8,23 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
-class AdminController extends Controller
+class SuperAdminController extends Controller
 {
+    //
     public function index(){
 
-        return view('panel.admin-index');
+        return view('super.admin-index');
     }
 
     public function posts(){
 
-        $posts = Auth::user()->posts;
+        $posts = Post::all();
 
-        return view('panel.admin-posts', compact('posts'));
+        return view('super.admin-posts', compact('posts'));
     }
 
     public function create(){
-        return view('panel.admin-create');
+        return view('super.admin-create');
     }
 
     public function store(){
@@ -43,12 +44,12 @@ class AdminController extends Controller
 
         Session::flash('cmessage', 'Post was created!');
 
-        return redirect()->route('a-posts');
+        return back();
     }
 
     public function destroy($post){
 
-        unlink(Post::findOrFail($post)->picture);
+//        unlink(Post::findOrFail($post)->picture);
         Post::findOrFail($post)->delete();
 
         Session::flash('dmessage', 'Post was deleted!');
@@ -60,7 +61,7 @@ class AdminController extends Controller
 
         $value = Post::find($id);
 
-        return view('panel.admin-edit', ['id' => $id, 'value' => $value]);
+        return view('super.admin-edit', ['id' => $id, 'value' => $value]);
     }
 
     public function update($id){
@@ -77,10 +78,23 @@ class AdminController extends Controller
             $inputs['picture'] = request('picture')->store('/public/images');
         }
 
-        auth()->user()->posts()->find($id)->update($inputs);
+        Post::all()->find($id)->update($inputs);
 
         Session::flash('cmessage', 'Post was updated!');
 
-        return redirect()->route('a-posts');
+        return redirect()->route('s-users')->with('cmessage', 'User\'s post is updated');
+    }
+    public function users(){
+
+        $users = User::all();
+
+        return view('super.admin-users', compact('users'));
+    }
+    public function usersPosts($id){
+
+        $user = User::findOrFail($id);
+        $posts = User::findOrFail($id)->posts;
+
+        return view('super.admin-users-posts', compact('posts', 'user'));
     }
 }

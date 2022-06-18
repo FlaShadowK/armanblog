@@ -1,5 +1,0 @@
-<x-about>
-
-
-
-</x-about>

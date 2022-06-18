@@ -1,7 +1,7 @@
 <x-admin-master>
 
     @section('naslov')
-        <strong>Your posts</strong>
+        <strong>All posts</strong>
         @if (session('d-message'))
             <div class="alert alert-danger">
             {{ Session::get('d-message') }}
@@ -10,7 +10,7 @@
     @endsection
     @section('content')
             @if(Session::has('cmessage'))
-                <p class="alert alert-successstyle="padding: 0; width: 100%;"">{{ Session::get('cmessage') }}</p>
+                <p class="alert alert-success">{{ Session::get('cmessage') }}</p>
             @endif
                 @if(Session::has('dmessage'))
                     <p class="alert alert-danger">{{ Session::get('dmessage') }}</p>
@@ -41,9 +41,9 @@
 
                     <a href="{{route('blog', $post->slug)}}"><button style="padding: 0; width: 100%;" class="btn btn-success" type="button">Show</button></a>
                     <hr>
-                    <a href="{{route('a-edit', $post->id)}}"><button style="padding: 0; width: 100%;" class="btn btn-info" type="button">Edit</button></a>
+                    <a href="{{route('s-edit', $post->id)}}"><button style="padding: 0; width: 100%;" class="btn btn-info" type="button">Edit</button></a>
                     <hr>
-                    <form method="post" action="{{route('a-destroy', $post->id)}}">
+                    <form method="post" action="{{route('s-destroy', $post->id)}}">
                         @csrf
                         {{ method_field('delete')}}
                         <button class="btn btn-danger" style="padding: 0; width: 100%;" type="submit">Delete</button>

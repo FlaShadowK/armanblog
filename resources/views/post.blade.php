@@ -24,8 +24,8 @@
             <hr>
             <span class="meta">
             Posted by
-            <a href="{{route('about')}}">Arman Omerovic</a>
-             {{$post->created_at->diffForHumans()}}
+            <span>{{App\Models\User::findOrFail($post->user_id)->name}}</span>
+            {{$post->created_at->diffForHumans()}}
         </span>
 
     @endsection

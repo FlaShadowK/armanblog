@@ -31,7 +31,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <a href="{{route('index')}}" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-{{--        <a href="{{\Illuminate\Support\Facades\Auth::logout()}}" class="nav-link">Logout</a>--}}
+        <a href="{{route('l-out')}}" class="nav-link">Log out</a>
       </li>
     </ul>
   </nav>
@@ -40,7 +40,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{route('a-index')}}" class="brand-link">
+    <a href="{{route('index')}}" class="brand-link">
       <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
@@ -80,7 +80,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 {{--              </li>--}}
 {{--            </ul>--}}
 {{--          </li>--}}
-          <x-panel.links></x-panel.links>
+        @if(auth()->user()->admin == 1)
+            <x-super.links></x-super.links>
+        @else
+            <x-panel.links></x-panel.links>
+        @endif
 
         </ul>
       </nav>

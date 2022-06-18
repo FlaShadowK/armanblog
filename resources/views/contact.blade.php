@@ -2,7 +2,10 @@
 
     @section('content')
 
-{{--        <form id="contactForm" data-sb-form-api-token="API_TOKEN">--}}
+        @if(Session::has('mail-message'))
+            <p class="alert alert-info">{{ Session::get('mail-message') }}</p>
+        @endif
+
         <form id="contactForm" method="post" action="{{route('contact-mail')}}">
             @csrf
             <div class="form-floating">
@@ -23,7 +26,7 @@
             </div>
             <div class="form-floating">
                 <textarea class="form-control" name="messages" id="message" placeholder="Enter your message here..." style="height: 12rem" data-sb-validations="required"></textarea>
-                <label for="message">Poruka za mene</label>
+                <label for="message">Poruka za nas</label>
                 <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
             </div>
             <br />

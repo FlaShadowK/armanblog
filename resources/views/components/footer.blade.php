@@ -35,13 +35,6 @@
                                     </span>
                         </a>
                     </li>
-                    @if(!auth()->user())
-                    <li class="list-inline-item">
-                        <a href="{{route('login')}}">
-                            <button type="button" style="visibility: hidden;"></button>
-                        </a>
-                    </li>
-                    @endif
                 </ul>
                 <div class="small text-center text-muted fst-italic">Copyright &copy; Arman Omerovic 2022</div>
             </div>

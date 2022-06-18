@@ -36,7 +36,7 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="page-heading">
                             <h1>Kontakt</h1>
-                            <span class="subheading">Imate pitanja? Slobodno me kontaktirajte.</span>
+                            <span class="subheading">Imate pitanja? Slobodno nas kontaktirajte.</span>
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
-                        <p>Kontaktirajte me preko formulara ispod, odgovaram u najkracem mogucem roku.</p>
+                        <p>Kontaktirajte nas preko formulara ispod, odgovaramo u najkracem mogucem roku.</p>
                         <div class="my-5">
                             @yield('content')
                         </div>

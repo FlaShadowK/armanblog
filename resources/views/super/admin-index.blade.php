@@ -1,8 +1,7 @@
 <x-admin-master>
     @section('naslov')
-        <strong>Admin panel</strong>
+        <strong>Super admin panel</strong>
     @endsection
-
     @section('content')
         <h1><--- Izaberite opciju</h1>
     @endsection
