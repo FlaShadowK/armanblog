@@ -12,9 +12,23 @@ class PostController extends Controller
 {
     //
 
-    public function index(){
+    public function index()
+    {
 
-        $posts = Post::all();
+        //Morao sam da prepakujem arraj iz Posts::all u drugi jer mi je davao neki eloquent error (Slika 1)
+
+        $i = 0;
+
+        $posts1 = Post::all();
+
+//        return dd($posts1);
+
+
+        foreach ($posts1 as $post1) {
+            $posts2[$i++] = $post1;
+        }
+
+        $posts = array_reverse($posts2);
 
         return view('index', ['posts' => $posts]);
 
@@ -70,6 +84,10 @@ class PostController extends Controller
     public function blogs(){
 
         $posts = Post::paginate(4);
+
+        if (empty($posts[0])) {
+            return view('blogs');
+        }
 
         return view('blogs', ['posts'=>$posts]);
 

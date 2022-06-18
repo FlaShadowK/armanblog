@@ -5,7 +5,7 @@
     @endsection
     @section('content')
 
-        <form action="{{route('a-store')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('a-store')}}" method="post" class="form-group" enctype="multipart/form-data">
             @csrf
             <label for="title">Title:</label>
             <input type="text" name="title" id="title" class="form-control">
@@ -19,7 +19,11 @@
             <label for="myeditorinstance">Content:</label>
             <textarea id="myeditorinstance" name="content"></textarea>
             <hr>
-            <button type="submit" class="btn btn-info">Create</button>
+            <div style="margin-bottom:10px;">
+                <button type="submit" class="btn btn-info" style="width: 30%;">Objavite</button>
+                <a href="{{route('a-posts')}}"><button class="btn btn-outline-primary" type="button" style="width: 10%;">Nazad</button></a>
+            </div>
+
 
         </form>
 

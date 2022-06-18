@@ -1,7 +1,7 @@
 <x-admin-master>
 
     @section('naslov')
-        <strong>Edit your posts</strong>
+        <strong>Your posts</strong>
         @if (session('d-message'))
             <div class="alert alert-danger">
             {{ Session::get('d-message') }}
@@ -20,15 +20,14 @@
             </tr>
             @foreach($posts as $post)
             <tr>
-
                 <td>{{$post->title}}</td>
                 <td><img src="{{asset($post->picture)}}" style="max-width: 350px ;"></td>
                 <td>{{$post->short_description}}</td>
-                <td>{!! substr($post->content, 0, 150) !!}</td>
+                <td><div style="overflow: scroll; width: 100%; max-height: 200px; margin: 0; padding: 0;">{!! $post->content !!}</div></td>
                 <td>{{$post->created_at}}</td>
-                <td><a href="{{route('a-edit', $post->slug)}}"><button style="width: 100%;" class="btn btn-info" type="button">Edit</button></a>
+                <td><a href="{{route('a-edit', $post->id)}}"><button style="width: 100%;" class="btn btn-info" type="button">Edit</button></a>
                     <hr>
-                    <form method="post" action="{{route('a-destroy', $post->id)}}">
+                    <form method="post" action="{{route('a-destroy', $post->id)}}">`
                         @csrf
                         {{ method_field('delete')}}
                         <button class="btn btn-danger" style="width: 100%;" type="submit">Delete</button>

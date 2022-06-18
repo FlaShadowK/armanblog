@@ -4,6 +4,6 @@
     @endsection
 
     @section('content')
-        <h2>Wilkommen u vas licni personalni admin panjel :D</h2>
+        <h1>oh maj gad nema ovde nista da se vidi jos, work in progresss :/ </h1>
     @endsection
 </x-admin-master>

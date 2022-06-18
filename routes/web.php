@@ -29,19 +29,16 @@ Route::get('/blogs', [\App\Http\Controllers\PostController::class, 'blogs'])->na
 Route::get('/blog/{slug}', [\App\Http\Controllers\PostController::class, 'blog'])->name('blog');
 
 
-
-Auth::routes([]);
-//'register' => false
+Auth::routes(['register' => true]);
+//
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
-
-Route::group(['middleware' => 'auth'], function (){
-    Route::get('/hadalj', [\App\Http\Controllers\AdminController::class, 'index'])->name('a-index');
-    Route::get('/hadalj/create', [\App\Http\Controllers\AdminController::class, 'create'])->name('a-create');
-    Route::post('/hadalj/create/store', [\App\Http\Controllers\AdminController::class, 'store'])->name('a-store');
-    Route::delete('/hadalj/delete/{id}', [\App\Http\Controllers\AdminController::class, 'destroy'])->name('a-destroy');
-    Route::get('/hadalj/edit/{post}', [\App\Http\Controllers\AdminController::class, 'edit'])->name('a-edit');
-    Route::patch('/hadalj/update/{id}', [\App\Http\Controllers\AdminController::class, 'update'])->name('a-update');
-    Route::get('/hadalj/posts', [\App\Http\Controllers\AdminController::class, 'posts'])->name('a-posts');
+Route::middleware(['auth','admin-check'])->group(function (){
+    Route::get('/panel', [\App\Http\Controllers\AdminController::class, 'index'])->name('a-index');
+    Route::get('/panel/create', [\App\Http\Controllers\AdminController::class, 'create'])->name('a-create');
+    Route::post('/panel/create/store', [\App\Http\Controllers\AdminController::class, 'store'])->name('a-store');
+    Route::delete('/panel/delete/{id}', [\App\Http\Controllers\AdminController::class, 'destroy'])->name('a-destroy');
+    Route::get('/panel/edit/{id}', [\App\Http\Controllers\AdminController::class, 'edit'])->name('a-edit');
+    Route::patch('/panel/update/{id}', [\App\Http\Controllers\AdminController::class, 'update'])->name('a-update');
+    Route::get('/panel/posts', [\App\Http\Controllers\AdminController::class, 'posts'])->name('a-posts');
 });

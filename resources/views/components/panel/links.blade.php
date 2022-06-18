@@ -1,21 +1,28 @@
 <li class="nav-item">
+    <a href="{{route('a-index')}}" class="nav-link">
+        <p>
+            Pocetna
+        </p>
+    </a>
+</li>
+<li class="nav-item">
     <a href="{{route('a-create')}}" class="nav-link">
         <p>
-            Create
+            Napravite blog
         </p>
     </a>
 </li>
 <li class="nav-item">
     <a href="{{route('a-posts')}}" class="nav-link">
         <p>
-            Edit Posts
+            Blogovi
         </p>
     </a>
 </li>
 <li class="nav-item">
     <a href="#" class="nav-link">
         <p>
-            Edit About Me
+            Izmjenite "o meni" sadrzaj
         </p>
     </a>
 </li>

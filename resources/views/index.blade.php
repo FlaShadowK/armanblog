@@ -4,6 +4,8 @@
         @php
             $i = 0;
         @endphp
+
+
         @foreach($posts as $post)
             <!-- Post preview-->
 
@@ -28,7 +30,6 @@
                     break;
                 }
             @endphp
-
         @endforeach
 
     @endsection

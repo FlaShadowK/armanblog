@@ -54,37 +54,63 @@ class AdminController extends Controller
         return back();
     }
 
-    public function edit($post){
+    public function edit($id){
 
-        $value = Post::findBySlug($post);
+        $value = Post::find($id);
 
-        return view('panel.admin-edit', ['post'=> $post, 'value'=>$value]);
+        return view('panel.admin-edit', ['id' => $id, 'value' => $value]);
     }
 
-    public function update(Post $post){
+//    public function update($post){
+////      return dd($post);
+//        $inputs = request()->validate([
+//
+//            'title'=>'required|max:255',
+//            'content'=>'required',
+//            'short_description'=>'required'
+//        ]);
+//
+//        $posts = new Post;
+//
+//        if(request('post_image')){
+//            $inputs['picture'] = request('picture')->store('/public/images');
+//            $posts->picture = $inputs['picture'];
+//        }
+//
+////        return dd($post->picture);
+//
+//        $posts->title = $inputs['title'];
+//        $posts->content = $inputs['content'];
+//        $posts->short_description = $inputs['short_description'];
+//
+////        dd($posts);
+//        auth()->user()->posts()->whereId($post)->save($posts);
+//
+//        Session::flash('umessage', 'Post was updated!');
+//
+//        return redirect()->route('a-posts');
+//    }
+
+    public function update($id){
 
         $inputs = request()->validate([
-
-            'title'=>'required|max:255',
+            'title'=>'required|min:8|max:255',
             'picture'=>'file',
             'content'=>'required',
             'short_description'=>'required'
         ]);
 
-
-        if(request('post_image')){
+        if(request('picture')){
+            unlink(Post::all()->find($id)->picture);
             $inputs['picture'] = request('picture')->store('/public/images');
-            $post->picture = $inputs['picture'];
         }
 
-        $post->title = $inputs['title'];
-        $post->content = $inputs['content'];
-        $post->short_description = $inputs['short_description'];
+//        auth()->user()->posts()->whereId($id)->save($inputs);
+        Post::all()->find($id)->update($inputs);
 
-        auth()->user()->posts()->whereId($post->id)->save($post);
-
-        Session::flash('umessage', 'Post was updated!');
+        Session::flash('cmessage', 'Post was created!');
 
         return redirect()->route('a-posts');
     }
+
 }
