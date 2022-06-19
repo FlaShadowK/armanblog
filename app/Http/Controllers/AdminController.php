@@ -83,7 +83,7 @@ class AdminController extends Controller
 
         if(request('picture')){
             unlink(Post::all()->find($id)->picture);
-            $inputs['picture'] = request('picture')->store('/public/images');
+            $inputs['picture'] = request('picture')->store('/storage/images');
         }
 
         auth()->user()->posts()->find($id)->update($inputs);
