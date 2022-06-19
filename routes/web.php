@@ -31,13 +31,24 @@ Route::middleware(['auth'])->group(function (){
 });
 
 Route::middleware(['auth', 'admin-check'])->group(function (){
-    Route::get('/super/panel', [\App\Http\Controllers\SuperAdminController::class, 'index'])->name('s-index');
-    Route::get('/super/panel/create', [\App\Http\Controllers\SuperAdminController::class, 'create'])->name('s-create');
-    Route::post('/super/panel/create/store', [\App\Http\Controllers\SuperAdminController::class, 'store'])->name('s-store');
-    Route::delete('/super/panel/delete/{id}', [\App\Http\Controllers\SuperAdminController::class, 'destroy'])->name('s-destroy');
-    Route::get('/super/panel/edit/{id}', [\App\Http\Controllers\SuperAdminController::class, 'edit'])->name('s-edit');
-    Route::patch('/super/panel/update/{id}', [\App\Http\Controllers\SuperAdminController::class, 'update'])->name('s-update');
-    Route::get('/super/panel/posts', [\App\Http\Controllers\SuperAdminController::class, 'posts'])->name('s-posts');
-    Route::get('/super/panel/users', [\App\Http\Controllers\SuperAdminController::class, 'users'])->name('s-users');
-    Route::get('/super/panel/users/{id}/posts', [\App\Http\Controllers\SuperAdminController::class, 'usersPosts'])->name('s-users-posts');
+    Route::get('/super/panel', [\App\Http\Controllers\SuperAdminController::class, 'index'])->name('s-index'); //Pocetna
+
+//==============================================================| POSTS |===========================================================================
+    Route::get('/super/panel/post/create', [\App\Http\Controllers\SuperAdminController::class, 'create'])->name('s-create'); //Create Post
+    Route::post('/super/panel/post/create/store', [\App\Http\Controllers\SuperAdminController::class, 'store'])->name('s-store'); //Store Post
+    Route::delete('/super/panel/post/delete/{id}', [\App\Http\Controllers\SuperAdminController::class, 'destroyPost'])->name('s-post-destroy'); //Delete Post
+    Route::get('/super/panel/posts', [\App\Http\Controllers\SuperAdminController::class, 'posts'])->name('s-posts'); //All Posts
+    Route::get('/super/panel/post/edit/{id}', [\App\Http\Controllers\SuperAdminController::class, 'edit'])->name('s-edit'); //Edit Post
+    Route::patch('/super/panel/post/update/{id}', [\App\Http\Controllers\SuperAdminController::class, 'update'])->name('s-update'); //Update Post
+
+//==============================================================| USERS |===========================================================================
+    Route::get('/super/panel/users', [\App\Http\Controllers\SuperAdminController::class, 'users'])->name('s-users'); //All users
+    Route::get('/super/panel/users/{id}/posts', [\App\Http\Controllers\SuperAdminController::class, 'usersPosts'])->name('s-users-posts'); //All user's posts
+    Route::delete('/super/panel/users/{id}/delete', [\App\Http\Controllers\SuperAdminController::class, 'destroyUser'])->name('s-user-destroy'); //Delete user
+
+    Route::get('/test', function (){
+
+        return dd(auth()->user()->id);
+
+    });
 });

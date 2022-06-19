@@ -21,6 +21,10 @@ class PostController extends Controller
 
         $posts1 = Post::all();
 
+        if (empty($posts1)){
+            return 'Nema postova';
+        }
+
         foreach ($posts1 as $post1) {
             $posts2[$i++] = $post1;
         }

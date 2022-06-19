@@ -23,6 +23,7 @@ class AdminController extends Controller
     }
 
     public function create(){
+
         return view('panel.admin-create');
     }
 
@@ -48,6 +49,10 @@ class AdminController extends Controller
 
     public function destroy($post){
 
+        if($value->user_id != Auth::user()->id){
+            return abort(403);
+        }
+
         unlink(Post::findOrFail($post)->picture);
         Post::findOrFail($post)->delete();
 
@@ -59,6 +64,10 @@ class AdminController extends Controller
     public function edit($id){
 
         $value = Post::find($id);
+
+        if($value->user_id != Auth::user()->id){
+            return abort(403);
+        }
 
         return view('panel.admin-edit', ['id' => $id, 'value' => $value]);
     }

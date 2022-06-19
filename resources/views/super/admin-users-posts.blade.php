@@ -43,7 +43,7 @@
                         <hr>
                         <a href="{{route('s-edit', $post->id)}}"><button style="width: 100%;" class="btn btn-info" type="button">Edit</button></a>
                         <hr>
-                        <form method="post" action="{{route('s-destroy', $post->id)}}">
+                        <form method="post" action="{{route('s-post-destroy', $post->id)}}">
                             @csrf
                             {{ method_field('delete')}}
                             <button class="btn btn-danger" style="width: 100%;" type="submit">Delete</button>
