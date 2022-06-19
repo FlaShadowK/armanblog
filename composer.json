@@ -12,6 +12,7 @@
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
+        "spatie/laravel-google-cloud-storage": "^2.0",
         "symfony/http-client": "^6.1",
         "symfony/mailgun-mailer": "^6.1"
     },
@@ -48,7 +49,8 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ]
+        ],
+        "post-install-cmd": [ "ln -sr storage/app/public public/public"]
     },
     "extra": {
         "laravel": {
@@ -62,5 +64,5 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "post-install-cmd": [ "ln -sr storage/app/public public/public" ]
+
 }
