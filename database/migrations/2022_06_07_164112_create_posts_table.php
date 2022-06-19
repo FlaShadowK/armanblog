@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('short_description');
             $table->text('content');
             $table->string('picture')->nullable();
-            $table->integer('user_id');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

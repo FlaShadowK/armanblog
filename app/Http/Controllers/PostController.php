@@ -91,5 +91,11 @@ class PostController extends Controller
         return view('post', ['post'=>$blog]);
     }
 
+    public function profile($id){
 
+        $user = User::findOrFail($id);
+        $posts = $user->posts()->get()->all();
+
+        return  view('profile', compact('user', 'posts'));
+    }
 }

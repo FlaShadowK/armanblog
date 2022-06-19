@@ -27,9 +27,17 @@
                 <tr>
                     <td>{{$user->name}}</td>
                     <td>{{$user->id}}</td>
-                    <td><img src="{{$user->picture}}" alt="" height="80px"></td>
-                    <td>{{$user->about}}</td>
-                    <td><a href="{{route('s-users-posts', $user->id)}}"><button type="button" class="btn btn-info"  style="padding: 0; width: 100%;">Posts</button></a></td>
+                    <td><img src="{{asset($user->picture)}}" alt="{{$user->picture}}" height="80px"></td>
+                    <td>{!!$user->about !!}</td>
+                    <td style="padding:  5px 0 5px 0;"><a href="{{route('s-users-posts', $user->id)}}"><button type="button" class="btn btn-info"  style="padding: 0; width: 100%;">Posts</button></a>
+                        <a href="{{route('profile', $user->id)}}"><button type="button" class="btn btn-info" style="padding: 0; width: 100%;">Profile</button></a>
+                        <form method="post" action="{{route('s-user-destroy', $user->id)}}">
+                            @csrf
+                            {{ method_field('delete')}}
+                            <button class="btn btn-danger" style="padding: 0; width: 100%;" type="submit" @if(auth()->user()->id == $user->id)disabled @endif>Delete</button>
+                        </form>
+
+                    </td>
                 </tr>
             @endforeach
         </table>

@@ -19,12 +19,14 @@
 
     @section('content')
 
+            <img src="{{asset($post->picture)}}" style="width:100%; border-radius: 10px;" alt="">
+
             {!! $post->content !!}
             <br>
             <hr>
             <span class="meta">
             Posted by
-            <span>{{App\Models\User::findOrFail($post->user_id)->name}}</span>
+            <a href="{{route('profile', $post->user_id)}}"><span>{{App\Models\User::findOrFail($post->user_id)->name}}</span></a>
             {{$post->created_at->diffForHumans()}}
         </span>
 

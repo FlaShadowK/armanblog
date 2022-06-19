@@ -19,5 +19,10 @@
         </p>
     </a>
 </li>
-
-
+<li class="nav-item">
+    <a href="{{route('a-user')}}" class="nav-link">
+        <p>
+            Uredite vas profil
+        </p>
+    </a>
+</li>

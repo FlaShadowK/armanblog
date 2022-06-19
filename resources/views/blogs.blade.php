@@ -11,7 +11,7 @@
                 </a>
                 <p class="post-meta">
                     Posted by
-                    <span>{{App\Models\User::findOrFail($post->user_id)->name}}</span>
+                    <a href="{{route('profile', $post->user_id)}}"><span>{{App\Models\User::findOrFail($post->user_id)->name}}</span></a>
                     {{$post->created_at->diffForHumans()}}u
                 </p>
             </div>

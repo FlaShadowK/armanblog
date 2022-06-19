@@ -27,7 +27,6 @@
                 <a href="{{route('a-posts')}}"><button class="btn btn-outline-primary" type="button" style="width: 10%;">Nazad</button></a>
                 </div>
 
-
             </form>
 
         @endsection

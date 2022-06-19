@@ -57,6 +57,13 @@ class SuperAdminController extends Controller
         return back();
     }
 
+    public function destroyUser($id){
+
+        User::findOrFail($id)->delete();
+
+        return back()->with('dmessage', 'User has been deleted!');
+    }
+
     public function edit($id){
 
         $value = Post::find($id);
@@ -97,4 +104,36 @@ class SuperAdminController extends Controller
 
         return view('super.admin-users-posts', compact('posts', 'user'));
     }
+
+    public function editUser(){
+
+        $value = Auth::user();
+//        dd($value->name);
+        return view('panel.admin-user-edit', compact('value'));
+    }
+
+    public function updateUser($id){
+
+        $inputs = request()->validate([
+            'picture'=>'file',
+            'about'=>'required',
+        ]);
+
+        if(request('picture')){
+            if (!empty(Auth::user()->picture)){
+                unlink(Auth::user()->picture);}
+            $inputs['picture'] = request('picture')->store('/public/images/pfp');
+        }else{
+            $inputs['picture'] = Auth::user()->picture;
+        }
+
+        Auth::user()->about = $inputs['about'];
+        Auth::user()->picture = $inputs['picture'];
+        Auth::user()->update($inputs);
+
+        Session::flash('cmessage', 'Profile was updated!');
+
+        return redirect()->route('a-index');
+    }
+
 }

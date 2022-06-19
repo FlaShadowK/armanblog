@@ -48,6 +48,10 @@ class AdminController extends Controller
 
     public function destroy($post){
 
+        if(Post::findOrFail($post)->user_id != Auth::user()->id){
+            return abort(403);
+        }
+
         unlink(Post::findOrFail($post)->picture);
         Post::findOrFail($post)->delete();
 
@@ -56,14 +60,18 @@ class AdminController extends Controller
         return back();
     }
 
-    public function edit($id){
+    public function editPost($id){
 
         $value = Post::find($id);
+
+        if($value->user_id != Auth::user()->id){
+            return abort(403);
+        }
 
         return view('panel.admin-edit', ['id' => $id, 'value' => $value]);
     }
 
-    public function update($id){
+    public function updatePost($id){
 
         $inputs = request()->validate([
             'title'=>'required|min:8|max:255',
@@ -83,4 +91,39 @@ class AdminController extends Controller
 
         return redirect()->route('a-posts');
     }
+
+    public function editUser(){
+        $value = Auth::user();
+
+        if($value->id != Auth::user()->id){
+            return abort(403);
+        }
+//        dd($value->name);
+        return view('panel.admin-user-edit', compact('value'));
+    }
+
+    public function updateUser($id){
+
+        $inputs = request()->validate([
+            'picture'=>'file',
+            'about'=>'required',
+        ]);
+
+        if(request('picture')){
+            if (!empty(Auth::user()->picture)){
+                unlink(Auth::user()->picture);}
+            $inputs['picture'] = request('picture')->store('/public/images/pfp');
+        }else{
+            $inputs['picture'] = Auth::user()->picture;
+        }
+
+        Auth::user()->about = $inputs['about'];
+        Auth::user()->picture = $inputs['picture'];
+        Auth::user()->update($inputs);
+
+        Session::flash('cmessage', 'Profile was updated!');
+
+        return redirect()->route('a-index');
+    }
+
 }

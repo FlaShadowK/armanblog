@@ -4,6 +4,11 @@
     @endsection
 
     @section('content')
+            @if (session('cmessage'))
+                <div class="alert alert-success">
+                    {{ Session::get('cmessage') }}
+                </div>
+            @endif
         <h1><--- Izaberite opciju</h1>
     @endsection
 </x-admin-master>
