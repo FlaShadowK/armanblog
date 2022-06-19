@@ -12,16 +12,15 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {           Schema::dropIfExists('posts');
-
+    {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('slug')->unique();
             $table->string('title');
+            $table->string('slug')->unique();
             $table->string('short_description');
             $table->text('content');
             $table->string('picture')->nullable();
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

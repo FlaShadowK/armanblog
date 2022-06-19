@@ -47,7 +47,7 @@ class SuperAdminController extends Controller
         return back();
     }
 
-    public function destroyPost($post){
+    public function destroy($post){
 
 //        unlink(Post::findOrFail($post)->picture);
         Post::findOrFail($post)->delete();
@@ -55,13 +55,6 @@ class SuperAdminController extends Controller
         Session::flash('dmessage', 'Post was deleted!');
 
         return back();
-    }
-
-    public function destroyUser($id){
-
-        User::findOrFail($id)->delete();
-
-        return back()->with('dmessage', 'User has been deleted!');
     }
 
     public function edit($id){
@@ -72,8 +65,6 @@ class SuperAdminController extends Controller
     }
 
     public function update($id){
-
-        $uid = Post::all()->find($id)->user_id;
 
         $inputs = request()->validate([
             'title'=>'required|min:8|max:255',
@@ -89,9 +80,10 @@ class SuperAdminController extends Controller
 
         Post::all()->find($id)->update($inputs);
 
-        return redirect()->route('s-users-posts', $uid)->with('cmessage', 'User\'s post is updated');
-    }
+        Session::flash('cmessage', 'Post was updated!');
 
+        return redirect()->route('s-users')->with('cmessage', 'User\'s post is updated');
+    }
     public function users(){
 
         $users = User::all();
