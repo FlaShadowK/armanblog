@@ -12,9 +12,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="{{asset('admin/all.min.css')}}">
+  <link rel="stylesheet" href="{{secure_asset('admin/all.min.css')}}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('admin/adminlte.min.css')}}">
+  <link rel="stylesheet" href="{{secure_asset('admin/adminlte.min.css')}}">
     <x-head.tinymce-config/>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -41,7 +41,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{route('index')}}" class="brand-link">
-      <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="{{secure_asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
 
@@ -147,10 +147,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src="{{asset('admin/jquery.min.js')}}"></script>
+<script src="{{secure_asset('admin/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->
-<script src="{{asset('admin/bootstrap.bundle.min.js')}}"></script>
+<script src="{{secure_asset('admin/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="{{asset('admin/adminlte.min.js')}}"></script>
+<script src="{{secure_asset('admin/adminlte.min.js')}}"></script>
 </body>
 </html>
